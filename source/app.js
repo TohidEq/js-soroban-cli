@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import {Text, Box, useInput, useApp} from 'ink';
+import {Text, Box, useInput, useApp, Newline} from 'ink';
+import DrawTable from './draw/table.js';
 
 export default function App({name = 'Stranger'}) {
 	const [x, setX] = React.useState(1);
@@ -60,6 +61,13 @@ export default function App({name = 'Stranger'}) {
 			[0, 1, 1, 1, 1],
 		],
 	});
+	const toggleValue = (digit, i, c) => {
+		setTable(prevTable => {
+			const newTable = {...prevTable};
+			newTable[digit][i][c] = newTable[digit][i][c] === 0 ? 1 : 0;
+			return newTable;
+		});
+	};
 
 	const {exit} = useApp();
 	useInput((input, key) => {
@@ -68,27 +76,74 @@ export default function App({name = 'Stranger'}) {
 		}
 
 		if (key.leftArrow) {
-			setX(Math.max(1, x - 1));
+			toggleValue(0, 0, 0);
+			toggleValue(0, 0, 1);
 		}
 
 		if (key.rightArrow) {
-			setX(Math.min(20, x + 1));
+			toggleValue(9, 0, 0);
+			toggleValue(9, 0, 1);
 		}
 
 		if (key.upArrow) {
-			setY(Math.max(1, y - 1));
+			toggleValue(8, 0, 0);
+			toggleValue(8, 0, 1);
 		}
 
 		if (key.downArrow) {
-			setY(Math.min(10, y + 1));
+			toggleValue(7, 0, 0);
+			toggleValue(7, 0, 1);
 		}
 	});
-	return (
-		<Box flexDirection="column">
-			<Text>Use arrow keys to move the face. Press “q” to exit.</Text>
-			<Box height={20} paddingLeft={x} paddingTop={y}>
-				<Text>^_^</Text>
+	return <DrawTable table={table} />;
+
+	/*
+	 *
+	 *
+<Box width={10}>
+	<Box width="50%">
+		<Text>X</Text>
+	</Box>
+	<Text>Y</Text>
+</Box>
+	 *
+	 *
+	 *
+	 *
+	return(<Box>
+			<Box alignItems="flex-start">
+				<Box marginRight={1}>
+					<Text>X</Text>
+				</Box>
+				<Text>
+					A
+					<Newline />
+					B
+					<Newline />C
+				</Text>
+			</Box>
+			<Box alignItems="center">
+				<Box marginRight={1}>
+					<Text>X</Text>
+				</Box>
+				<Text>
+					A
+					<Newline />
+					B
+					<Newline />C
+				</Text>
+			</Box>
+			<Box alignItems="flex-end">
+				<Box marginRight={1}>
+					<Text>X</Text>
+				</Box>
+				<Text>
+					A
+					<Newline />
+					B
+					<Newline />C
+				</Text>
 			</Box>
 		</Box>
-	);
+	);*/
 }
