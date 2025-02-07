@@ -2,6 +2,7 @@ import {Text, Box, Newline} from 'ink';
 
 import React, {useState} from 'react';
 export default function DrawTable({table, topSelector}) {
+	const borderColor = '#271612';
 	const beadCreator = (beadNumber, lightBg = false) => {
 		let bgColor = lightBg ? '#303030' : '#010101';
 		if (beadNumber == 0) {
@@ -39,7 +40,7 @@ export default function DrawTable({table, topSelector}) {
 		let bgColor = lightBg ? '#303030' : '#010101';
 		return (
 			<Box flexWrap="wrap" height="2">
-				<Text color="#5C4033" backgroundColor={bgColor}>
+				<Text color={borderColor} backgroundColor={bgColor}>
 					{`██${space ? '⠀' : ''}`}
 					<Newline />
 					{`██${space ? '⠀' : ''}`}
@@ -48,8 +49,13 @@ export default function DrawTable({table, topSelector}) {
 		);
 	};
 	const bigWall = (
-		<Text color="#5C4033">
+		<Text color={borderColor}>
 			███████████████████████████████████████████████████████████████████████████
+		</Text>
+	);
+	const bigWall_dots = (
+		<Text color={borderColor} backgroundColor="#dadada">
+			█████🬴🬸███████████████████🬴🬸███████████████████🬴🬸███████████████████🬴🬸█████
 		</Text>
 	);
 
@@ -79,7 +85,7 @@ export default function DrawTable({table, topSelector}) {
 			{/* 1 2 row */}
 			{rowCells(0, 1, topSelector)}
 
-			{bigWall}
+			{bigWall_dots}
 
 			{/* 2 row */}
 			{rowCells(1, 0)}
