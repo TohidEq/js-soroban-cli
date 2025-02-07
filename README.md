@@ -21,26 +21,24 @@ cd js-soroban-cli
 npm i
 ```
 
-### 3. Build and Use
+### 3. Build, Install and Use
 
 ```bash
 npm run build
 chmod +x ./dist/cli.js
+npm install --global js-soroban-cli
+```
 
+And
+
+```bash
 js-soroban-cli
 ```
 
-If it has `not executable file ERROR` you can:
+Or
 
 ```bash
-$ whereis js-soroban-cli
->> js-soroban-cli: /home/tohid-eq/.local/share/nvm/v22.9.0/bin/js-soroban-cli
-```
-
-and make it executable with:
-
-```
-chmod +x /home/tohid-eq/.local/share/nvm/v22.9.0/bin/js-soroban-cli
+./dist/cli.js
 ```
 
 # Keys
