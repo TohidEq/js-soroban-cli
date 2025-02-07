@@ -3,7 +3,7 @@ import {Text, Box, useInput, useApp, Newline} from 'ink';
 import DrawTable from './draw/table.js';
 
 export default function App({name = 'Stranger'}) {
-	const [test, setTest] = useState('');
+	const [test, setTest] = useState('Press "="');
 	/*
 	 * 1 2 3 4 5 6 7 8 9 0
 	 *
@@ -127,6 +127,30 @@ export default function App({name = 'Stranger'}) {
 		},
 	};
 
+	function countOnes(arr) {
+		let count = 0;
+		for (let i = 0; i < arr.length; i++) {
+			if (arr[i] == 0) {
+				break;
+			}
+			count++;
+		}
+		return count;
+	}
+
+	const calcResult = () => {
+		var result = 0;
+		for (var key in '0987654321') {
+			let x = '0987654321'.indexOf(key);
+			var i = 10 ** x; // 0>>10**0=1    1>>10**1=10   2>>10**2=100
+			if (table[key][0][0] == 1) result += 5 * i;
+
+			let normalNumbers = countOnes(table[key][1]);
+			if (normalNumbers > 0) result += normalNumbers * i;
+		}
+		return result;
+	};
+
 	useInput((input, key) => {
 		if (key.tab) {
 			setTopSelector(!topSelector);
@@ -159,7 +183,7 @@ export default function App({name = 'Stranger'}) {
 						}
 					}
 
-					setTest(`times: ${timesResult}, digitResult: ${digitResult}`);
+					//setTest(`times: ${timesResult}, digitResult: ${digitResult}`);
 					if (timesResult > 0) {
 						tablePlusOne(digitResult, timesResult);
 					} else {
@@ -171,6 +195,8 @@ export default function App({name = 'Stranger'}) {
 			// reset table
 			if (input === ' ') setTable(defaultTable);
 
+			if (input === '=') setTest(calcResult());
+
 			// exit
 			if (input === '`') exit();
 		}
@@ -178,58 +204,11 @@ export default function App({name = 'Stranger'}) {
 
 	return (
 		<>
-			<Text>Top Selecotr {topSelector ? 'Active' : 'Deactive'}</Text>
 			<DrawTable table={table} topSelector={topSelector} />
+			<Text>Result: {test}</Text>
+			{/*
+			<Text>Top Selecotr {topSelector ? 'Active' : 'Deactive'}</Text>
+			*/}
 		</>
 	);
-
-	/*
-	 *
-	 *
-<Box width={10}>
-	<Box width="50%">
-		<Text>X</Text>
-	</Box>
-	<Text>Y</Text>
-</Box>
-	 *
-	 *
-	 *
-	 *
-	return(<Box>
-			<Box alignItems="flex-start">
-				<Box marginRight={1}>
-					<Text>X</Text>
-				</Box>
-				<Text>
-					A
-					<Newline />
-					B
-					<Newline />C
-				</Text>
-			</Box>
-			<Box alignItems="center">
-				<Box marginRight={1}>
-					<Text>X</Text>
-				</Box>
-				<Text>
-					A
-					<Newline />
-					B
-					<Newline />C
-				</Text>
-			</Box>
-			<Box alignItems="flex-end">
-				<Box marginRight={1}>
-					<Text>X</Text>
-				</Box>
-				<Text>
-					A
-					<Newline />
-					B
-					<Newline />C
-				</Text>
-			</Box>
-		</Box>
-	);*/
 }
