@@ -5,38 +5,59 @@ export default function DrawTable({table}) {
 	const beadCreator = beadNumber => {
 		if (beadNumber == 0) {
 			return (
-				<Box width={6} height={2} flexWrap="wrap">
-					<Box width="100%">
-						<Text color="#aaaa00">{'  ▐▍  '}</Text>
-					</Box>
-					<Box width="100%">
-						<Text color="#aaaa00">{'  ▐▍  '}</Text>
-					</Box>
+				<Box height="2">
+					<Text color="#dadada" backgroundColor="#010101">
+						<Text color="#979797">{'⠀⠀▐'}</Text>
+						{'▍⠀⠀⠀'}
+						<Newline />
+						<Text color="#979797">{'⠀⠀▐'}</Text>
+						{'▍⠀⠀⠀'}
+					</Text>
 				</Box>
 			);
 		} else {
 			return (
-				<Box width={12} height={2} flexWrap="wrap">
-					<Box width="100%">
-						<Text color="#a00000">{'🭈🭆🬹🬹🭑🬽'}</Text>
-					</Box>
-					<Box width="100%">
-						<Text color="#a00000">{'🭣🭧🬎🬎🭜🭘'}</Text>
-					</Box>
+				<Box marginRight="6" height="2">
+					<Text color="#a00000" backgroundColor="#010101">
+						<Text color="#850000">{'🭈🭆'}</Text>
+						{'🬹🬹'}
+
+						<Text color="#a50505">{'🭑🬽⠀'}</Text>
+
+						<Newline />
+						<Text color="#700000">{'🭣🭧🬎🬎'}</Text>
+
+						<Text color="#850000">{'🭜🭘⠀'}</Text>
+					</Text>
 				</Box>
 			);
 		}
 	};
+
+	const miniWall = space => (
+		<Box flexWrap="wrap" height="2">
+			<Text color="#5C4033" backgroundColor="#010101">
+				{`██${space ? '⠀' : ''}`}
+				<Newline />
+				{`██${space ? '⠀' : ''}`}
+			</Text>
+		</Box>
+	);
+	const bigWall = (
+		<Text color="#5C4033">
+			███████████████████████████████████████████████████████████████████████████
+		</Text>
+	);
+
 	return (
 		<>
-			<Text>
-				████████████████████████████████████████████████████████████████████████████████
-			</Text>
+			{bigWall}
 			{/* 1 row */}
-			<Box justifyContent="flex-start">
+			<Box width="128">
+				{miniWall(1)}
 				{beadCreator(table['1'][0][0])}
 				{beadCreator(table['2'][0][0])}
-				{beadCreator(table['1'][0][0])}
+				{beadCreator(table['3'][0][0])}
 				{beadCreator(table['4'][0][0])}
 				{beadCreator(table['5'][0][0])}
 				{beadCreator(table['6'][0][0])}
@@ -44,13 +65,15 @@ export default function DrawTable({table}) {
 				{beadCreator(table['8'][0][0])}
 				{beadCreator(table['9'][0][0])}
 				{beadCreator(table['0'][0][0])}
+				{miniWall(0)}
 			</Box>
 
 			{/* 2 row */}
-			<Box justifyContent="flex-start">
+			<Box width="128">
+				{miniWall(1)}
 				{beadCreator(table['1'][0][1])}
 				{beadCreator(table['2'][0][1])}
-				{beadCreator(table['1'][0][1])}
+				{beadCreator(table['3'][0][1])}
 				{beadCreator(table['4'][0][1])}
 				{beadCreator(table['5'][0][1])}
 				{beadCreator(table['6'][0][1])}
@@ -58,13 +81,10 @@ export default function DrawTable({table}) {
 				{beadCreator(table['8'][0][1])}
 				{beadCreator(table['9'][0][1])}
 				{beadCreator(table['0'][0][1])}
+				{miniWall(0)}
 			</Box>
-			<Text>
-				████████████████████████████████████████████████████████████████████████████████
-			</Text>
-			<Text>
-				████████████████████████████████████████████████████████████████████████████████
-			</Text>
+			{bigWall}
+			{bigWall}
 		</>
 	);
 }
