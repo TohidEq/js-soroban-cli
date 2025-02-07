@@ -19,7 +19,7 @@ export default function App({name = 'Stranger'}) {
 	 * x x x x x x x x x x
 	 *
 	 * */
-	const [table, setTable] = useState({
+	let defaultTable = {
 		1: [
 			[0, 1],
 			[0, 1, 1, 1, 1],
@@ -60,7 +60,8 @@ export default function App({name = 'Stranger'}) {
 			[0, 1],
 			[0, 1, 1, 1, 1],
 		],
-	});
+	};
+	const [table, setTable] = useState(defaultTable);
 	const toggleValue = (digit, i, c) => {
 		setTable(prevTable => {
 			const newTable = {...prevTable};
@@ -70,32 +71,33 @@ export default function App({name = 'Stranger'}) {
 	};
 
 	const {exit} = useApp();
+	const [topSelector, setTopSelector] = useState(false);
+	let topSelectorChars = '1234567890';
+
 	useInput((input, key) => {
-		if (input === 'q') {
-			exit();
-		}
+		if (key.tab) {
+			setTopSelector(!topSelector);
+		} else {
+			if (topSelector === true) {
+				if (topSelectorChars.includes(input)) {
+					toggleValue(input, 0, 0);
+					toggleValue(input, 0, 1);
+					setTopSelector(false);
+				}
+			}
 
-		if (key.leftArrow) {
-			toggleValue(0, 0, 0);
-			toggleValue(0, 0, 1);
-		}
+			if (input === '`') exit();
 
-		if (key.rightArrow) {
-			toggleValue(9, 0, 0);
-			toggleValue(9, 0, 1);
-		}
-
-		if (key.upArrow) {
-			toggleValue(8, 0, 0);
-			toggleValue(8, 0, 1);
-		}
-
-		if (key.downArrow) {
-			toggleValue(7, 0, 0);
-			toggleValue(7, 0, 1);
+			if (input === ' ') setTable(defaultTable);
 		}
 	});
-	return <DrawTable table={table} />;
+
+	return (
+		<>
+			<Text>Top Selecotr {topSelector ? 'Active' : 'Deactive'}</Text>
+			<DrawTable table={table} topSelector={topSelector} />
+		</>
+	);
 
 	/*
 	 *
