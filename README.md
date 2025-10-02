@@ -6,6 +6,8 @@ Terminal base Soroban with [INK (React JS in terminal)](https://www.npmjs.com/pa
 
 ![js-soroban-cli](./assets/imgs/ss-1.png)
 
+---
+
 ## Installation
 
 ### 1. Clone project
@@ -26,10 +28,10 @@ npm i
 ```bash
 npm run build
 chmod +x ./dist/cli.js
-npm install --global js-soroban-cli
+sudo npm install --global .
 ```
 
-And
+And run
 
 ```bash
 js-soroban-cli
@@ -41,47 +43,55 @@ Or
 ./dist/cli.js
 ```
 
+---
+
+## Uninstallation
+
+```bash
+sudo npm uninstall --global js-soroban-cli
+```
+
 # Keys
 
-### EZ Keys
+## General Keys
+| Key   | Action                     |
+|-------|----------------------------|
+| `>>`  | Exit                       |
+| `=`   | Calculate Result           |
+| `TAB` | Top Beads Select (Fives)   |
 
-```
-` >> Exit
-= >> Calculate Result
+---
 
-TAB >> Top Beads Select(Fives)
-```
+## Base Keys (Columns, Right → Left)
+| Column | Keys         |
+|--------|-------------|
+| 1st    | `0 - p - ; - /` |
+| 2nd    | `9 - o - l - .` |
+| ...    | ...         |
+| Last   | `1 - q - a - z` |
 
-### Base Keys
+---
 
-- cols...
+## Top Beads (+5 / -5)
+| Key   | Action                   |
+|-------|--------------------------|
+| `TAB` + Number (`1-0`) | Toggle Top Beads Value (Fives) |
 
-```
+---
 
-0-p-;-/ >> First Column Right to Left
-9-o-l-. >> seccond Column rtl
-...
-1-q-a-z >> Last Coloumn rtl
-```
+## Bottom Beads (±1,2,3,4)
+### Add Values
+| Keys (Row)        | Action    |
+|-------------------|-----------|
+| `1-2-3-4-5-6-7-8-9-0` | +1        |
+| `q-w-e-r-t-y-u-i-o-p` | +2        |
+| `a-s-d-f-g-h-j-k-l-;` | +3        |
+| `z-x-c-v-b-n-m-,-.-/` | +4        |
 
-### +5 -5
-
-```
-First tab, then use a number
-TAB >> 1-2-3-4-5-6-7-8-9-0  >>  Toggle Top Beads Value (Fives)
-```
-
-### +- 1 2 3 4
-
-```
-1-2-3-4-5-6-7-8-9-0 >> Plus 1
-q-w-e-r-t-y-u-i-o-p >> Plus 2
-a-s-d-f-g-h-j-k-l-; >> Plus 3
-z-x-c-v-b-n-m-,-.-/ >> Plus 4
-
-Hold shift and use keys
-Shift + 1-2-3-4-5-6-7-8-9-0 >> Minus 4
-Shift + q-w-e-r-t-y-u-i-o-p >> Minus 3
-Shift + a-s-d-f-g-h-j-k-l-; >> Minus 2
-Shift + z-x-c-v-b-n-m-,-.-/ >> Minus 1
-```
+### Subtract Values (with **Shift**)
+| Keys (Row)        | Action    |
+|-------------------|-----------|
+| `Shift + 1-2-3-4-5-6-7-8-9-0` | -4 |
+| `Shift + q-w-e-r-t-y-u-i-o-p` | -3 |
+| `Shift + a-s-d-f-g-h-j-k-l-;` | -2 |
+| `Shift + z-x-c-v-b-n-m-,-.-/` | -1 |

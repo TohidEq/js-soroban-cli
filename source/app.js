@@ -8,8 +8,8 @@ export default function App({name = 'Stranger'}) {
 	 * 1 2 3 4 5 6 7 8 9 0
 	 *
 	 * -------------------
-	 * o o o o o o o o o o
 	 * x x x x x x x x x x
+	 * o o o o o o o o o o
 	 * -------------------
 	 * o o o o o o o o o o
 	 * x x x x x x x x x x
@@ -20,43 +20,43 @@ export default function App({name = 'Stranger'}) {
 	 * */
 	let defaultTable = {
 		1: [
-			[0, 1],
+			[1, 0],
 			[0, 1, 1, 1, 1],
 		],
 		2: [
-			[0, 1],
+			[1, 0],
 			[0, 1, 1, 1, 1],
 		],
 		3: [
-			[0, 1],
+			[1, 0],
 			[0, 1, 1, 1, 1],
 		],
 		4: [
-			[0, 1],
+			[1, 0],
 			[0, 1, 1, 1, 1],
 		],
 		5: [
-			[0, 1],
+			[1, 0],
 			[0, 1, 1, 1, 1],
 		],
 		6: [
-			[0, 1],
+			[1, 0],
 			[0, 1, 1, 1, 1],
 		],
 		7: [
-			[0, 1],
+			[1, 0],
 			[0, 1, 1, 1, 1],
 		],
 		8: [
-			[0, 1],
+			[1, 0],
 			[0, 1, 1, 1, 1],
 		],
 		9: [
-			[0, 1],
+			[1, 0],
 			[0, 1, 1, 1, 1],
 		],
 		0: [
-			[0, 1],
+			[1, 0],
 			[0, 1, 1, 1, 1],
 		],
 	};
@@ -143,7 +143,7 @@ export default function App({name = 'Stranger'}) {
 		for (var key in '0987654321') {
 			let x = '0987654321'.indexOf(key);
 			var i = 10 ** x; // 0>>10**0=1    1>>10**1=10   2>>10**2=100
-			if (table[key][0][0] == 1) result += 5 * i;
+			if (table[key][0][1] == 1) result += 5 * i;
 
 			let normalNumbers = countOnes(table[key][1]);
 			if (normalNumbers > 0) result += normalNumbers * i;
